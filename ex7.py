@@ -1,3 +1,13 @@
-"""Exercise 7: store grades in a nested dictionary and report averages and best students."""
+"""Exercise 7 - Students by city. Read the task in README.md."""
+
+students = [
+    ("Aziz", "Tashkent"),
+    ("Malika", "Samarkand"),
+    ("Javohir", "Tashkent"),
+    ("Dilnoza", "Bukhara"),
+    ("Sardor", "Samarkand"),
+    ("Nigora", "Tashkent"),
+    ("Bekzod", "Fergana"),
+]
 
 # Write your solution below.

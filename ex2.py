@@ -1,3 +1,3 @@
-"""Exercise 2: read a matrix as a list of lists and analyse its rows and columns."""
+"""Exercise 2 - Shopping list. Read the task in README.md."""
 
 # Write your solution below.

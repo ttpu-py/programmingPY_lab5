@@ -4,21 +4,25 @@ Turin Polytechnic University in Tashkent - Course of Computer Science
 
 Topics: **lists**, **tuples** and **dictionaries**.
 
-## Getting started in GitHub Codespaces
+## How to start
 
-Open this repository in a Codespace (**Code → Codespaces → Create codespace on main**). Python and the VS Code Python extension are installed automatically.
+1. Open this repository in a Codespace: **Code → Codespaces → Create codespace on main**.
+2. Wait. Python is installed automatically.
+3. Open the file for the exercise, for example `ex1.py`.
+4. Write your code below the comment `# Write your solution below.`
+5. Click the **Run Python File** button (top-right of the editor). The output shows in the terminal.
 
-Each exercise has its own Python file (`ex1.py` ... `ex8.py`). Open the file you are working on and use the **Run Python File** button in the top-right corner of the editor. The program runs in the terminal below the editor.
-
-You can also run a file from the terminal:
+You can also run a file in the terminal:
 
 ```bash
 python ex1.py
 ```
 
-Replace `ex1.py` with the file you want to test. Do not rename the provided files.
+Do not rename the files. Some files already contain data. Use this data in your solution.
 
-Before the deadline, commit and push your work:
+## How to submit
+
+Run these commands in the terminal:
 
 ```bash
 git add .
@@ -26,377 +30,281 @@ git commit -m "Solve lab 5"
 git push
 ```
 
-Only work pushed to GitHub is graded. Read input with `input()` and display output with `print()`.
+We grade only the code on GitHub.
 
-The exercises get harder as you go, so solve them in order. Try to match the example output exactly, and test your programs with your own inputs too, not only the examples.
-
-### Useful reminders
+## Useful reminders
 
 ```python
-"3 8 1 5".split()          # ['3', '8', '1', '5']
-x, y = (4, 7)              # tuple unpacking: x = 4, y = 7
-", ".join(["a", "b"])      # 'a, b'
-d.get(key, 0)              # value for key, or 0 if key is missing
-for key, value in d.items():
-    ...
-f"{3.14159:.2f}"           # '3.14'
+for name, mark in results:      # take the two values from each tuple
+d.get(key, 0)                   # value for key, or 0 if the key is not there
+for key, value in d.items():    # go through a dictionary
+", ".join(["a", "b"])           # 'a, b'
+sorted(my_list, reverse=True)   # new list, from biggest to smallest
+f"{25.2857:.1f}"                # '25.3'
 ```
 
 ---
 
-## Exercise 1 - Number statistics
+## Exercise 1 - Weather
 
-Repeatedly read integers, one per line, and store them in a list. Stop when the user enters `0` (the `0` is **not** part of the list).
-
-Then display:
-
-- the list itself
-- how many numbers were entered
-- the sum, the average (2 decimal places), the minimum and the maximum
-- a new list with the numbers that are **strictly greater** than the average
-- a new list with the values without duplicates, in the order they first appeared
-
-Compute the sum, the minimum and the maximum with a loop. **Do not** use the built-in `sum()`, `min()` or `max()` in this exercise.
-
-If the first number is `0`, print `No numbers entered.` and stop.
-
-Example:
-
-```text
-Input a number (0 to stop): 4
-Input a number (0 to stop): -2
-Input a number (0 to stop): 7
-Input a number (0 to stop): 4
-Input a number (0 to stop): 9
-Input a number (0 to stop): 7
-Input a number (0 to stop): 0
-Numbers: [4, -2, 7, 4, 9, 7]
-Count: 6
-Sum: 29
-Average: 4.83
-Minimum: -2
-Maximum: 9
-Above average: [7, 9, 7]
-Unique values: [4, -2, 7, 9]
-```
-
-```text
-Input a number (0 to stop): 0
-No numbers entered.
-```
-
-Write the solution in `ex1.py`.
-
-## Exercise 2 - Matrix
-
-A matrix can be stored as a **list of lists**, where each inner list is one row.
-
-Read the number of rows `r` and the number of columns `c`. Then read `r` rows; each row is one line with `c` integers separated by spaces. If a row does not contain exactly `c` numbers, print `Row must contain c numbers.` (with the real value of `c`) and ask for the same row again.
-
-Then display:
-
-- the matrix, one row per line
-- the list of row sums
-- the list of column sums
-- the transposed matrix (rows become columns)
-- the largest element and its position as a tuple `(row, column)`, counting from 1. If the largest value appears more than once, show the first one (top to bottom, left to right).
-
-Example:
-
-```text
-Input number of rows: 3
-Input number of columns: 4
-Row 1: 3 8 1 5
-Row 2: 7 2 9
-Row must contain 4 numbers.
-Row 2: 7 2 9 4
-Row 3: 6 0 9 1
-Matrix:
-3 8 1 5
-7 2 9 4
-6 0 9 1
-Row sums: [17, 22, 16]
-Column sums: [16, 10, 19, 10]
-Transposed:
-3 7 6
-8 2 0
-1 9 9
-5 4 1
-Largest element: 9 at position (2, 3)
-```
-
-Write the solution in `ex2.py`.
-
-## Exercise 3 - Points on a plane
-
-Read an integer `n` (`n >= 2`), then `n` points. Each point is one line with two integers `x y`. Store every point as a **tuple** `(x, y)` in a list.
-
-Then display:
-
-- the list of points
-- how many points are in each quadrant (I, II, III, IV), and how many lie on an axis (`x == 0` or `y == 0`)
-- the point farthest from the origin `(0, 0)` and its distance
-- the **closest pair** of points and the distance between them
-
-Distances are printed with 2 decimal places. The distance between `(x1, y1)` and `(x2, y2)` is `((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5`.
-
-If there is a tie, keep the point (or pair) that was found first. To find the closest pair, compare every point with every point that comes **after** it in the list.
-
-Quadrants:
-
-```text
-        y
-   II   |   I
- -------+-------> x
-   III  |   IV
-```
-
-Example:
-
-```text
-Input number of points: 5
-Point 1: 1 2
-Point 2: -3 4
-Point 3: -1 -1
-Point 4: 5 0
-Point 5: 2 3
-Points: [(1, 2), (-3, 4), (-1, -1), (5, 0), (2, 3)]
-Quadrant I: 2
-Quadrant II: 1
-Quadrant III: 1
-Quadrant IV: 0
-On an axis: 1
-Farthest from origin: (-3, 4), distance 5.00
-Closest pair: (1, 2) and (2, 3), distance 1.41
-```
-
-Note that `(-3, 4)` and `(5, 0)` are both at distance `5.00`; `(-3, 4)` is shown because it comes first.
-
-Write the solution in `ex3.py`.
-
-## Exercise 4 - Word frequency
-
-Read one line of text. Count how many times each word appears using a **dictionary** (word → count).
-
-Rules:
-
-- Words are separated by spaces.
-- Upper and lower case do not matter: `The` and `the` are the same word. Convert every word to lower case.
-- Remove the punctuation characters `. , ! ? ; :` from the beginning and end of each word (hint: `word.strip(".,!?;:")`).
-
-Then display:
-
-- the total number of words and the number of different words
-- every word with its count, in the order the words **first appeared** in the text
-- the most frequent word and its count (if there is a tie, the one that appeared first)
-- a list of the words that were used exactly once
-
-Example:
-
-```text
-Enter a sentence: The cat and the dog. The dog barked, and the cat ran!
-Total words: 12
-Unique words: 6
-the: 4
-cat: 2
-and: 2
-dog: 2
-barked: 1
-ran: 1
-Most frequent: the (4 times)
-Words used once: ['barked', 'ran']
-```
-
-Write the solution in `ex4.py`.
-
-## Exercise 5 - Shop inventory
-
-Write a program that manages the stock of a small shop. Keep the stock in a **dictionary** (item name → quantity). The program repeatedly reads a command after the prompt `> ` until the command `end` is entered.
-
-| Command | What it does |
-| --- | --- |
-| `add <item> <qty>` | Adds `qty` pieces of `item`. If the item is new, it is created. |
-| `sell <item> <qty>` | Removes `qty` pieces of `item`. If the quantity becomes `0`, the item is deleted from the dictionary. |
-| `show` | Prints every item and its quantity in **alphabetical** order, or `Inventory is empty.` |
-| `end` | Stops the program and prints the total number of pieces in stock. |
-
-Errors:
-
-- Selling an item that is not in the dictionary prints `Error: <item> is not in stock.`
-- Selling more pieces than available prints `Error: only <n> <item> left.` and changes nothing.
-- Any other command prints `Unknown command.`
-
-Item names are single words and quantities are positive integers. Successful `add` and `sell` commands print nothing.
-
-Example:
-
-```text
-> add apple 10
-> add banana 5
-> add apple 3
-> sell apple 4
-> sell orange 1
-Error: orange is not in stock.
-> sell banana 7
-Error: only 5 banana left.
-> sell banana 5
-> show
-apple: 9
-> add cherry 20
-> show
-apple: 9
-cherry: 20
-> buy milk 2
-Unknown command.
-> end
-Total items: 29
-```
-
-```text
-> show
-Inventory is empty.
-> end
-Total items: 0
-```
-
-Write the solution in `ex5.py`.
-
-## Exercise 6 - Anagram groups
-
-Two words are **anagrams** if they contain exactly the same letters, possibly in a different order: `listen`, `silent` and `enlist` are anagrams.
-
-Read words, one per line, until an empty line is entered. Ignore upper/lower case when comparing words. If a word was already entered before (ignoring case), print `<word> was already entered.` and skip it.
-
-Group the words that are anagrams of each other using a **dictionary**:
-
-- the **key** is a tuple with the sorted letters of the lower-case word, for example `tuple(sorted("listen"))` → `('e', 'i', 'l', 'n', 's', 't')`
-- the **value** is a list of the words (as they were typed) that have this key
-
-Then display:
-
-- every group with **at least two** words, one group per line, words separated by `, `. Groups appear in the order their first word was entered, and words keep their input order. If there are no such groups, print `(none)`.
-- the number of such groups
-- the words that have no anagram, separated by `, ` (or `(none)`)
-
-Example:
-
-```text
-Word (empty line to stop): listen
-Word (empty line to stop): silent
-Word (empty line to stop): apple
-Word (empty line to stop): Enlist
-Word (empty line to stop): stone
-Word (empty line to stop): dog
-Word (empty line to stop): Papel
-Word (empty line to stop): tones
-Word (empty line to stop): silent
-silent was already entered.
-Word (empty line to stop): notes
-Word (empty line to stop): cat
-Word (empty line to stop): act
-Word (empty line to stop): bird
-Word (empty line to stop):
-Anagram groups:
-listen, silent, Enlist
-apple, Papel
-stone, tones, notes
-cat, act
-Number of groups: 4
-No anagrams: dog, bird
-```
-
-Write the solution in `ex6.py`.
-
-## Exercise 7 - Grade book
-
-Read grade records, one per line, until `end` is entered. Each record has the form `name subject grade`, for example `Alice math 90`. Names and subjects are single words; grades are integers.
-
-Store the data in a **nested dictionary**: the key is the student name and the value is another dictionary (subject → grade):
+You have the temperatures for one week. The data is in `ex1.py`:
 
 ```python
-{"Alice": {"math": 90, "physics": 85}, "Bob": {...}, ...}
+days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+temps = [24, 27, 22, 31, 29, 19, 25]
 ```
 
-If the same student gets a grade for the same subject more than once, keep only the **higher** grade.
+1. Find the hottest day and the coldest day. Use a loop. Do not use `max()` or `min()`.
+2. Calculate the average temperature. Print it with 1 decimal.
+3. Make a list of the days that are warmer than the average. Print the list.
 
-Then display:
+Output:
 
-1. `Students:` followed by one line per student in **alphabetical** order: their subjects with grades (in the order the subjects were first entered for that student) and their average (2 decimal places).
-2. `Best per subject:` followed by one line per subject in **alphabetical** order with the student who has the highest grade in it. If two students have the same grade, show the one whose name comes first alphabetically.
-3. The student with the highest average (if there is a tie, the one whose name comes first alphabetically).
+```text
+Hottest day: Thu (31)
+Coldest day: Sat (19)
+Average: 25.3
+Warmer than average: ['Tue', 'Thu', 'Fri']
+```
+
+## Exercise 2 - Shopping list
+
+Help a friend make a shopping list.
+
+1. Read items from the user. Stop when the user types `done`.
+2. Do not add the same item two times. Print a message.
+3. Print the list with numbers.
+4. Read one item to remove. Remove it and print the list again.
+5. If the item is not in the list, print a message.
 
 Example:
 
 ```text
-Record: Alice math 90
-Record: Bob math 78
-Record: Alice physics 85
-Record: Carol math 95
-Record: Bob physics 92
-Record: Carol history 88
-Record: Alice math 70
-Record: Bob history 81
-Record: Bob math 85
-Record: end
-Students:
-Alice: math=90, physics=85, average=87.50
-Bob: math=85, physics=92, history=81, average=86.00
-Carol: math=95, history=88, average=91.50
-Best per subject:
-history: Carol (88)
-math: Carol (95)
-physics: Bob (92)
-Top student: Carol (91.50)
+Add item (done to stop): bread
+Add item (done to stop): milk
+Add item (done to stop): eggs
+Add item (done to stop): milk
+milk is already in the list.
+Add item (done to stop): apples
+Add item (done to stop): done
+Your list:
+1. bread
+2. milk
+3. eggs
+4. apples
+Remove item: eggs
+Your list:
+1. bread
+2. milk
+3. apples
 ```
 
-Here `Alice math 70` is ignored because Alice already has 90 in math, while `Bob math 85` replaces Bob's 78.
+## Exercise 3 - Exam results
 
-Write the solution in `ex7.py`.
+Each tuple has a student name and an exam mark. The data is in `ex3.py`:
 
-## Exercise 8 - Travel route
+```python
+results = [
+    ("Aziz", 78),
+    ("Malika", 92),
+    ("Javohir", 55),
+    ("Dilnoza", 85),
+    ("Sardor", 47),
+    ("Nigora", 92),
+]
+```
 
-A traveller has `n` train tickets for one continuous trip, but the tickets got mixed up. Each ticket is one line `from to price`, for example `Tashkent Samarkand 120`. City names are single words, and every city is visited at most once.
+1. Make a list of students who passed (mark 60 or more). Make a list of students who failed.
+2. Find the best mark. Print all students with the best mark.
+3. Print the ranking from the highest mark to the lowest.
 
-Read `n` and the `n` tickets. Store them in a **dictionary** where the key is the departure city and the value is a **tuple** `(destination, price)`.
+Tip for step 3: make a list of `(mark, name)` tuples and sort it. Python sorts tuples by the first value.
 
-**Part 1 - Rebuild the route.** Find the starting city: it is the only city that appears as a departure but never as a destination. Then follow the tickets from city to city and display:
+Output:
 
-- the whole route, cities separated by ` -> `
-- every leg of the trip, numbered, with its price
-- the total cost
-- the most expensive leg
+```text
+Passed: ['Aziz', 'Malika', 'Dilnoza', 'Nigora']
+Failed: ['Javohir', 'Sardor']
+Best mark: 92
+Best students: ['Malika', 'Nigora']
+Ranking:
+1. Nigora - 92
+2. Malika - 92
+3. Dilnoza - 85
+4. Aziz - 78
+5. Javohir - 55
+6. Sardor - 47
+```
 
-**Part 2 - Queries.** After that, repeatedly read queries `A B` until `end` is entered. For each query print:
+If two students have the same mark, any order is OK.
 
-- `Cost from A to B: <cost>`: the sum of the ticket prices travelling along the route from `A` to `B`
-- `Cannot travel from A to B.` if `B` comes **before** `A` on the route
-- `Unknown city: <city>` if one of the cities is not on the route (check `A` first)
+## Exercise 4 - English-Uzbek dictionary
+
+Make a small translator. The data is in `ex4.py`:
+
+```python
+words = {
+    "apple": "olma",
+    "book": "kitob",
+    "water": "suv",
+    "house": "uy",
+    "friend": "do'st",
+}
+```
+
+1. Read an English word. Change it to lower case.
+2. If the word is in the dictionary, print the translation.
+3. If the word is not in the dictionary, ask for the Uzbek word. Add the new word to the dictionary.
+4. Do steps 1-3 again. Stop when the user types `exit`.
+5. Print the number of words in the dictionary.
 
 Example:
 
 ```text
-Input number of tickets: 4
-Ticket 1: Bukhara Khiva 150
-Ticket 2: Tashkent Samarkand 120
-Ticket 3: Khiva Nukus 90
-Ticket 4: Samarkand Bukhara 100
-Route: Tashkent -> Samarkand -> Bukhara -> Khiva -> Nukus
-Legs:
-1. Tashkent -> Samarkand: 120
-2. Samarkand -> Bukhara: 100
-3. Bukhara -> Khiva: 150
-4. Khiva -> Nukus: 90
-Total cost: 460
-Most expensive leg: Bukhara -> Khiva (150)
-Query: Samarkand Khiva
-Cost from Samarkand to Khiva: 250
-Query: Tashkent Nukus
-Cost from Tashkent to Nukus: 460
-Query: Khiva Samarkand
-Cannot travel from Khiva to Samarkand.
-Query: Bukhara Andijan
-Unknown city: Andijan
-Query: end
+English word: book
+book = kitob
+English word: Cat
+I do not know cat. Uzbek word: mushuk
+Saved.
+English word: cat
+cat = mushuk
+English word: exit
+The dictionary has 6 words.
 ```
 
-Write the solution in `ex8.py`.
+## Exercise 5 - Class election
+
+The class chooses a leader. Each item in the list is one vote. The data is in `ex5.py`:
+
+```python
+votes = ["Malika", "Aziz", "Malika", "Sardor", "Aziz", "Malika",
+         "Dilnoza", "Aziz", "Malika", "Sardor", "Aziz", "Malika"]
+```
+
+1. Count the votes for each person. Use a dictionary: name → number of votes.
+2. Print each person, the votes and the percent (1 decimal).
+3. Print the winner.
+
+Output:
+
+```text
+Malika: 5 (41.7%)
+Aziz: 4 (33.3%)
+Sardor: 2 (16.7%)
+Dilnoza: 1 (8.3%)
+Winner: Malika
+```
+
+## Exercise 6 - Cafe order
+
+You work in a cafe. The menu is in `ex6.py`:
+
+```python
+menu = {
+    "plov": 35000,
+    "lagman": 30000,
+    "somsa": 8000,
+    "salad": 15000,
+    "tea": 5000,
+}
+```
+
+1. Print the menu.
+2. Read a dish and a quantity. Stop when the user types `done`.
+3. If the dish is not on the menu, print a message.
+4. Keep the order in a dictionary: dish → quantity. If the user orders the same dish again, add to the quantity.
+5. Print the receipt and the total.
+6. If the total is 100000 or more, give a 10% discount.
+
+Example:
+
+```text
+Menu:
+plov - 35000
+lagman - 30000
+somsa - 8000
+salad - 15000
+tea - 5000
+Dish (done to finish): plov
+Quantity: 2
+Dish (done to finish): pizza
+Sorry, we do not have pizza.
+Dish (done to finish): tea
+Quantity: 3
+Dish (done to finish): plov
+Quantity: 1
+Dish (done to finish): done
+Receipt:
+plov x 3 = 105000
+tea x 3 = 15000
+Total: 120000
+Discount 10%: 12000
+To pay: 108000
+```
+
+## Exercise 7 - Students by city
+
+Each tuple has a student name and a home city. The data is in `ex7.py`:
+
+```python
+students = [
+    ("Aziz", "Tashkent"),
+    ("Malika", "Samarkand"),
+    ("Javohir", "Tashkent"),
+    ("Dilnoza", "Bukhara"),
+    ("Sardor", "Samarkand"),
+    ("Nigora", "Tashkent"),
+    ("Bekzod", "Fergana"),
+]
+```
+
+1. Make a dictionary: city → list of student names.
+2. Print the cities in alphabetical order. For each city, print the number of students and their names.
+3. Print the city with the most students.
+
+Output:
+
+```text
+Bukhara (1): Dilnoza
+Fergana (1): Bekzod
+Samarkand (2): Malika, Sardor
+Tashkent (3): Aziz, Javohir, Nigora
+Biggest group: Tashkent
+```
+
+## Exercise 8 - Grade book
+
+Each student has marks for three subjects. The data is in `ex8.py`:
+
+```python
+grades = {
+    "Aziz":    {"math": 85, "physics": 72, "english": 90},
+    "Malika":  {"math": 95, "physics": 88, "english": 79},
+    "Javohir": {"math": 64, "physics": 91, "english": 71},
+    "Dilnoza": {"math": 78, "physics": 81, "english": 96},
+}
+```
+
+1. Print the average mark of each student (1 decimal).
+2. Print the student with the highest average.
+3. For each subject, print the student with the best mark.
+4. Make a dictionary: subject → average mark. Print it (1 decimal).
+
+Output:
+
+```text
+Student averages:
+Aziz: 82.3
+Malika: 87.3
+Javohir: 75.3
+Dilnoza: 85.0
+Top student: Malika
+Best in each subject:
+math: Malika (95)
+physics: Javohir (91)
+english: Dilnoza (96)
+Subject averages:
+math: 80.5
+physics: 83.0
+english: 84.0
+```
